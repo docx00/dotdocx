@@ -11,7 +11,7 @@ public class Main {
 	static String roomName;
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("DOTDOCX V0.1 =========");
-		System.out.println("Built for watch parties, but cheaper lmao.");
+		System.out.println("A barebones system for doing stuff with friends.");
 		
 		if(System.getProperty("os.name").contains("Windows")) {
 			systemInformation = "Windows";
@@ -25,8 +25,8 @@ public class Main {
 		
 		System.out.println("System: " + systemInformation);
 		
-		if(systemInformation.contentEquals("Unix")) {
-			System.out.println("!!!UNIX SYSTEM DETECTED, PLEASE INSTALL FFPLAY FROM PACKAGE MANAGER!!!");
+		if(systemInformation.contentEquals("Unix") || systemInformation.contentEquals("Mac")) {
+			System.out.println("!!!UNIX/MAC SYSTEM DETECTED, PLEASE INSTALL FFMPEG AND FFPLAY FROM PACKAGE MANAGER!!!");
 		}
 		
 		System.out.println("Select an option: 1) Host, 2) Viewer, 3) GitHub");
@@ -36,21 +36,24 @@ public class Main {
 	    String userOption = scanner.nextLine();  // Read user input
 	    
 	    if(userOption.equals("1")) { // HOST
-	    	System.out.println("You are now HOSTING! This currently only works on Windows because of FFMPEG requiring compilation for each individual platform.");
+	    	textBreak();
+	    	System.out.println("You are now HOSTING!");
 	    	System.out.println("Type a name for your room:");
 	    	Scanner scanner1 = new Scanner(System.in);  // Create a Scanner object
 		    System.out.println("> ");
 		    roomName = scanner.nextLine();  // Read user input
+		    textBreak();
 		    System.out.println("Please open OBS Studio, and set your Stream Server to rtmp://70.181.146.250/live/ and your Stream key to " + roomName );
 	    }
 	    
 	    if(userOption.contentEquals("2")) {
+	    	textBreak();
 	    	System.out.println("What is the host's room name?");
 	    	Scanner scanner1 = new Scanner(System.in);  // Create a Scanner object
 		    System.out.println("> ");
 		    roomName = scanner1.nextLine();
 		    if(systemInformation.contentEquals("Windows")) {
-		    	ProcessBuilder ps=new ProcessBuilder("ffplay.exe","-x","1280","-y","720","-framedrop","-autoexit","-window_title","dotDocx: " + roomName , "rtmp://70.181.146.250/live/" + roomName);
+		    	ProcessBuilder ps=new ProcessBuilder("ffplay.exe","-x","1280","-y","720","-framedrop","-autoexit","-window_title","dotdocx: " + roomName , "rtmp://70.181.146.250/live/" + roomName);
 
 		    	//From the DOC:  Initially, this property is false, meaning that the 
 		    	//standard output and error output of a subprocess are sent to two 
@@ -75,9 +78,19 @@ public class Main {
 		    	System.out.println("\\u001B[31m!!!ATTENTION!!! IF YOU NEVER GET A STREAM, PLEASE INSTALL FFMPEG THROUGH BREW!");
 		    	System.out.println("Run this command through your Terminal: brew install ffmpeg --with-sdl2 ");
 		    	Runtime rt = Runtime.getRuntime();
-		    	Process pr = rt.exec("ffplay rtmp://70.181.146.250/live/" + roomName);
+		    	Process pr = rt.exec("ffplay.exe -x 1280 -y 720 -framedrop -autoexit -window_title dotdocx: " + roomName + " rtmp://70.181.146.250/live/" + roomName);
 		    }
 	    }
+	}
+	
+	public static void textBreak() throws IOException, InterruptedException {
+		if(systemInformation.contentEquals("Unix") || systemInformation.contentEquals("mac")) {
+	    	Runtime.getRuntime().exec("clear");
+		}
+		if(systemInformation.contentEquals("Windows")) {
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		}
+		System.out.println("-----------------------------------------------------");
 	}
 
 }
