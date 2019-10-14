@@ -8,3 +8,11 @@ Go ahead and grab OBS or your favorite broadcasting software that supports RTMP.
 ### For Viewers
 This step is just as simple as being a host, if not a bit more. Run dotdocx, select the second option for "Viewers", and type in the room name your friend gave you. And if your host is streaming, the console should now fill with statistics about the stream.
 
+# FFPlay Keyboard Shortcuts
+For interacting with the stream viewing menu, [there are keyboard shortcuts](https://ffmpeg.org/ffplay.html#While-playing). Somne basic ones you should know are:
+
+| Key | Function                           |
+|-----|------------------------------------|
+| f   | Puts the stream in fullscreen mode |
+| m   | Mutes the stream                   |
+| p   | Pauses the stream                  |
