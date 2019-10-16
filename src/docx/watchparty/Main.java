@@ -35,7 +35,7 @@ public class Main {
                         System.out.println("> ");
                         roomName = scanner.nextLine();  // Read user input
                         textBreak();
-                        System.out.println("Please open OBS Studio, and set your Stream Server to rtmp://70.181.146.250/live/ and your Stream key to " + roomName );
+                        System.out.println("Please open OBS Studio, and set your Stream Server to " + WatchPartyUtils.getRTMPServerAddress() + " and your Stream key to " + roomName );
                         System.in.read();
                         
                 }

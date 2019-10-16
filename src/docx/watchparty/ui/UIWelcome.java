@@ -53,7 +53,7 @@ public class UIWelcome {
 		@Override
 		public void run() {
                     MessageDialog.showMessageDialog(textGUI, "Message", "The RTMP server address will be copied to your clipboard.\nThe stream key is equal to the room name.");
-                    WatchPartyUtils.copyToClipboard("rtmp://70.181.146.250/live/");
+                    WatchPartyUtils.copyToClipboard(WatchPartyUtils.getRTMPServerAddress());
 		}
         });
         

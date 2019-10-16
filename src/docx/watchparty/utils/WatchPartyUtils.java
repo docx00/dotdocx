@@ -21,6 +21,9 @@ import java.util.logging.Logger;
  * @author water
  */
 public class WatchPartyUtils {
+	public static String getRTMPServerAddress() {
+		return "rtmp://your-server-address";
+	}
     public static String getOSName(){
         if(System.getProperty("os.name").contains("Windows")) {
 			return "Windows";
