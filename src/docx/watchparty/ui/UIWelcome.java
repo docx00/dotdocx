@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import docx.watchparty.utils.WatchPartyUtils;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,10 +83,38 @@ public class UIWelcome {
 		}
         });
         
-         
+        Button GitHubButton = new Button("GitHub", new Runnable() {
+    		@Override
+    		public void run() {
+    			MessageDialog.showMessageDialog(textGUI, "Message", "Now opening GitHub in default browser.");
+                try {
+					WatchPartyUtils.openGitHub();
+				} catch (IOException | URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+        });
+        
+        Button ReportBugButton = new Button("Report Bug", new Runnable() {
+    		@Override
+    		public void run() {
+                //MessageDialog.showMessageDialog(textGUI, "Message", "The RTMP server address will be copied to your clipboard.\nThe stream key is equal to the room name.");
+    			MessageDialog.showMessageDialog(textGUI, "Message", "Now opening GitHub Issues in default browser.");
+    			try {
+					WatchPartyUtils.openBugReport();
+				} catch (IOException | URISyntaxException e) {
+					MessageDialog.showMessageDialog(textGUI, "Error", "Could not open web page.\nStack Trace:\n" + e.getStackTrace().toString());
+					e.printStackTrace();
+				}
+    		}
+        });
+        
         panel.addComponent(new EmptySpace(new TerminalSize(0,3)));
         panel.addComponent(HostButton);
         panel.addComponent(ViewButton);
+        panel.addComponent(GitHubButton);
+        panel.addComponent(ReportBugButton);
         
 
         

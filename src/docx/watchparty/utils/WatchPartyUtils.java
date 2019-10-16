@@ -5,12 +5,15 @@
  */
 package docx.watchparty.utils;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -123,6 +126,30 @@ public class WatchPartyUtils {
             }
 
             System.out.println(output);
+        }
+    }
+    public static void openGitHub() throws IOException, URISyntaxException {
+    	String url = "https://github.com/docx00/dotdocx";
+
+        if (Desktop.isDesktopSupported()) {
+            // Windows
+            Desktop.getDesktop().browse(new URI(url));
+        } else {
+            // Ubuntu
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("/usr/bin/firefox -new-window " + url);
+        }
+    }
+    public static void openBugReport() throws IOException, URISyntaxException {
+    	String url = "https://github.com/docx00/dotdocx/issues";
+
+        if (Desktop.isDesktopSupported()) {
+            // Windows
+            Desktop.getDesktop().browse(new URI(url));
+        } else {
+            // Ubuntu
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("/usr/bin/firefox -new-window " + url);
         }
     }
 }

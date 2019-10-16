@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
                         System.out.println("!!!UNIX/MAC SYSTEM DETECTED, PLEASE INSTALL FFMPEG AND FFPLAY FROM PACKAGE MANAGER!!!");
                 }
 
-                System.out.println("Select an option: 1) Host, 2) Viewer, 3) GitHub");
+                System.out.println("Select an option: 1) Host, 2) Viewer, 3) GitHub, 4) Report Bug");
 
                 Scanner scanner = new Scanner(System.in);  // Create a Scanner object
                 //System.out.println("> ");
@@ -47,6 +48,26 @@ public class Main {
                     System.out.println("> ");
                     roomName = scanner1.nextLine();
                     WatchPartyUtils.startViewingStream(roomName);   
+                }
+                
+                if(userOption.contentEquals("3")) {
+                    
+                    try {
+						WatchPartyUtils.openGitHub();
+					} catch (URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+                
+                if(userOption.contentEquals("4")) {
+                    
+                    try {
+						WatchPartyUtils.openBugReport();
+					} catch (URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}  
                 }
             }
             if(args.length < 1){
