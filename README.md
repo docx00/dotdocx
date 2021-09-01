@@ -1,4 +1,5 @@
 # dotdocx
+Abandoned. No longer works.
 A barebones system for doing stuff with friends.
 
 # FFPlay Keyboard Shortcuts
